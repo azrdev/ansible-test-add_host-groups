@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  run_once: true
+  tasks:
+    - add_host:
+        name: temphost_emptygroup
+        groups: empty
+    - add_host:
+        name: temphost_othergroup
+        groups: other
+
+- hosts: temphost_emptygroup,temphost_othergroup
+  gather_facts: false
+  tasks:
+    - debug:
+        var: groupvar
+
